@@ -34,7 +34,9 @@ public class Main {
                     break;
 
                 case 6:
-                    //bookAdd(s);
+
+
+                    //AvailableBooks();
                     break;
                 case 7:
                     System.out.println("Exiting Library Management System.");
@@ -104,6 +106,12 @@ public class Main {
         int x =sc.nextInt();
         objDBO.lend(x);
     }
+    public static void availblebook(){
+
+
+    }
+
+
 
 
 

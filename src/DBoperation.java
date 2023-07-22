@@ -6,19 +6,7 @@ import java.sql.*;
 public class DBoperation {
     static Connetion mycon = new Connetion();
 
-    public boolean isRegister() {
-        String sql = "SELECT * FROM userDetails";
 
-        try {
-            Statement statement = mycon.getMyConnection().createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            return result.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-
-    }
     public void addBook(Books books) {
 
         try {
@@ -87,5 +75,26 @@ public class DBoperation {
             e.printStackTrace();
         }
 
+    }
+
+    public static void displayAvailableBooks() {
+        try  {
+            String selectQuery = "SELECT * FROM books WHERE isbn = ?";
+            PreparedStatement preparedStatement = mycon.getMyConnection().prepareStatement(selectQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            System.out.println("Available Books:");
+            System.out.println("------------------------------");
+            while (resultSet.next()) {
+                int bookId = resultSet.getInt("book_id");
+                String title = resultSet.getString("title");
+                String catagary = resultSet.getString("category");
+                String author = resultSet.getString("author");
+                System.out.println("Book ID: " + bookId + ", Title: " + title +"category: "+ catagary+ "Author: " + author);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
