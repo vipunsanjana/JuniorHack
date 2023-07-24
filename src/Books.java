@@ -41,9 +41,6 @@ public class Books {
         return category;
     }
 
-
-
-
     public boolean isAvailable() {
         return isAvailable;
     }
